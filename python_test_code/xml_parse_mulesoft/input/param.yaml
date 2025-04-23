@@ -1,0 +1,12 @@
+
+inpDir: None
+tmpDir: None
+outpDir: None
+dataDir: None
+
+except_xml:
+  - log4j2
+  - log4j2-test
+  - application-types
+  - pom
+
