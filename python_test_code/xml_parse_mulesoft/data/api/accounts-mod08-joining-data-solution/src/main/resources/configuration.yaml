@@ -1,0 +1,7 @@
+accounts:
+  host: "apdev-accounts-ws.cloudhub.io"
+  port: "80"
+  base: "/api"
+  endpoint: "/accounts"
+  postdirectors: "/accounts_transactions"
+  

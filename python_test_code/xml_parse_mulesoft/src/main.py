@@ -73,7 +73,7 @@ def main(params):
         mma.xml_file_path = file_item["file_path"]
 
         data_dict = mma.parse_XML_structure()
-        mma.get_xml_mule_keys()
+        #mma.get_xml_mule_keys()
 
         mma.save_dict_data(data_dict, "{}.txt".format(file_name), tmpDir, split = False)
 

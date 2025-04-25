@@ -1,0 +1,24 @@
+[
+	{
+		"id": "ABC-1234",
+		"firstName": "John",
+		"lastName": "Doe",
+		"address": "123 Main St., Dallas TX",
+		"postal": "77777",
+		"country": "US",
+		"miles": 999,
+		"creationDate": "2019-08-21T04:34:41.098Z",
+		"type": "Personal"
+	},
+	{
+		"id": "XYZ-8989",
+		"firstName": "Jane",
+		"lastName": "Doe",
+		"address": "10 Downing St., San Francisco CA",
+		"postal": "89897",
+		"country": "US",
+		"miles": 101,
+		"creationDate": "2018-12-09T21:53:12.127Z",
+		"type": "Business"
+	}
+]
