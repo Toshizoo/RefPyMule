@@ -20,9 +20,10 @@
 |-|-|
 | xmltodict | python -m pip install xmltodict |
 
-## Analysis target folder
+## Parsing folder
 
-- Copy the Mule project folder in the workspace folder to the . /data/api folder.
+- Parse the XML files in the ./data/api folder.
+  - Copy the Mule project folder in the workspace folder to the . /data/api folder.
 
 
 ## Execution method
