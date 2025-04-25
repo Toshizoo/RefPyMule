@@ -6,7 +6,6 @@ import pandas as pd
 import sys
 import yaml
 import datetime
-import pprint
 
 from pathlib import Path
 
@@ -22,8 +21,6 @@ def main(params):
     date = datetime.datetime.now(JST).strftime('%Y%m%d%H%M')
     prjDir = os.path.abspath(Path().resolve().parents[0])
 
-    #print(prjDir)
-
     dataDir = prjDir + os.sep + "data"
     outpDir = prjDir + os.sep + "output"
     tmpDir  = prjDir + os.sep + "temp"
@@ -32,7 +29,7 @@ def main(params):
     XML_outpDir = outpDir + os.sep + date
     os.makedirs(XML_outpDir, exist_ok=True)
 
-    # 処理対象のXMLファイルをリストアップ
+    # LList XML files to be parsed
     file_items = []
     for root, dirs, files in os.walk(XML_dataDir):
         for file in files:
@@ -44,10 +41,8 @@ def main(params):
                     pass
                 else:
                     fpath_items = file_path.replace(XML_dataDir,"").split(os.sep)
-                    #print(fpath_items)
-                    #print("-" * 15)
 
-                    # main フォルダを対象。munit を非対象にしたいため。
+                    # The parsing target is the main folder. MUnit is not covered.
                     if (not "test" in fpath_items) and (not "target" in fpath_items):
                         file_item = {}
                         file_item["file_path"] = file_path
@@ -57,13 +52,10 @@ def main(params):
                         file_item["app_name"]  = fpath_items[1]
                         file_items.append(file_item.copy())
 
-    #pprint.pprint(file_items)
 
     df_xml_all = pd.DataFrame()
 
     for file_item in file_items:
-        #print(file_item)
-        #print("-" * 20)
 
         file_name = file_item["id_fname"]
         app_name = file_item["app_name"]
@@ -73,7 +65,6 @@ def main(params):
         mma.xml_file_path = file_item["file_path"]
 
         data_dict = mma.parse_XML_structure()
-        #mma.get_xml_mule_keys()
 
         mma.save_dict_data(data_dict, "{}.txt".format(file_name), tmpDir, split = False)
 
@@ -112,7 +103,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    #print(args.config)
     if os.path.exists(args.config) is False:
         print(args.config + ' is NOT found.')
         sys.exit()
