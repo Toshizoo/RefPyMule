@@ -10,3 +10,4 @@ except_xml:
   - application-types
   - pom
 
+target_folders: None

@@ -25,13 +25,23 @@ def main(params):
     outpDir = prjDir + os.sep + "output"
     tmpDir  = prjDir + os.sep + "temp"
 
+    # ws が指定されていなければ、存在しなければ Default の設定
+
+
     XML_dataDir = dataDir + os.sep + "api"
     XML_outpDir = outpDir + os.sep + date
     os.makedirs(XML_outpDir, exist_ok=True)
 
-    # LList XML files to be parsed
+    # List XML files to be parsed
     file_items = []
     for root, dirs, files in os.walk(XML_dataDir):
+        # フォルダをフィルタリング
+        rel_path = os.path.relpath(root, XML_dataDir)
+        if rel_path == '.':  # XML_dataDir直下の場合
+            # target_foldersに指定されていないフォルダを除外
+            dirs[:] = [d for d in dirs if d in params.get("target_folders", [])]
+            continue
+            
         for file in files:
             file_path = os.path.join(root, file)
             subject, ext = os.path.splitext(os.path.basename(file_path))

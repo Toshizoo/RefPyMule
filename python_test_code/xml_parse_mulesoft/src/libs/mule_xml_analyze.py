@@ -7,6 +7,7 @@ import os
 import pandas as pd
 import re
 import xmltodict
+import pickle
 from collections.abc import MutableMapping
 
 gc.enable()
@@ -97,9 +98,16 @@ class Mule_Xml_Analyze():
         return self.xml_file_path
 
     def save_to_excel(self, df, xls_file_name):
+        # DataFrame を Excel でSave
         save_fpath = os.path.join(self.outpDir, xls_file_name)
         df.to_excel( save_fpath, index=True)
         print(" * ", save_fpath)
+
+        # DataFrame を pickle でSave
+        pickl_file_name = os.path.splitext(xls_file_name)[0] + ".pic"
+        save_fpath = os.path.join(self.outpDir, pickl_file_name)
+        with open( save_fpath, "wb") as f:
+            pickle.dump(df, f)
 
     def save_dict_data(self, data_dict, save_fname, save_path=None, split = False):
 
